@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router();
 
-const cadastroPet = require('../routes/cadastroPet')
+const home = require('../routes/home')
+const cliente = require('../routes/cliente')
 
 
 
-router.use('/', cadastroPet)
+router.use('/', home)
+router.use('/cliente', cliente)
 
 module.exports = router;
