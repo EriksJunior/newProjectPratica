@@ -26,14 +26,17 @@
 <body>
 
         <%- include('components/navbar') %>
-        <div id="contentCliente">
-
-        <h2>Dados Cliente</h2>
+        <div id="divDadosCliente">
+            <div id="teste">
+                <h2>Dados Cliente</h2>
+                
+                <input type="text" class="dadosCliente" id="nomeCliente" placeholder="Some">
+                <input type="text" class="dadosCliente" id="sobreNomeCliente" placeholder="Sobre Nome">
+                <button id="salvarCliente">Salvar</button>
+            </div>
 
         <div class="line"></div>
 
-        <h3>Dados PEt</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
      
         </div>
    
@@ -102,6 +105,8 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="/js/home.js"></script>
+        <script src="/js/cliente.js"></script>
+
 </body>
 
 </html>

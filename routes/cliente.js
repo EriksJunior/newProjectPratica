@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const uuid = require('uuid');
 
 
 router.get('/', (req, res)=>{
@@ -11,6 +12,24 @@ router.get('/', (req, res)=>{
     }
    
 })
+
+
+router.post('/salvarCliente', (req, res)=>{
+
+    try {
+        const {nome, sobreNome} = req.body;
+        const id = uuid.v4();
+        const dadosCliente = {nome, sobreNome, id}
+
+        console.log(dadosCliente)
+    } catch {
+       return res.status(500).send('ocorreu um erro')
+
+    }
+})
+
+
+
 
 
 
