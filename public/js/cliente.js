@@ -13,7 +13,7 @@ async function salvarCliente(){
             sobreNome: sobreNome
         }
 
-        // const resposta = await axios.post('/salvarCliente', dadosFormulario)
+        const resposta = await axios.post('/salvarCliente', dadosFormulario)
         console.log(dadosFormulario)
 
     } 
