@@ -28,6 +28,20 @@ router.post('/salvarCliente', async (req, res) => {
     }
 })
 
+router.put('/atualizarCliente', async (req, res) => {
+    try {
+        const { nome, sobreNome, id } = req.body;
+        const dadosCliente = {nome, sobreNome}
+
+        await knex.table('cliente').update(dadosCliente).where('id', '=', id)
+        return res.status(200).json(dadosCliente)
+    } catch (error) { 
+        console.log(error)
+        return res.status(500).send('ocorreu um erro')     
+    }
+})
+
+
 
 
 
