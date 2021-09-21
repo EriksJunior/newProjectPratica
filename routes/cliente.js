@@ -13,6 +13,15 @@ router.get('/', (req, res) => {
 
 })
 
+router.get('/listarClientes', async (req, res) => {
+    try {
+      
+    } catch (error) { 
+      
+
+    }
+})
+
 
 router.post('/salvarCliente', async (req, res) => {
     try {
