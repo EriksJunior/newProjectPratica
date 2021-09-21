@@ -13,9 +13,8 @@ async function salvarCliente(){
             sobreNome: sobreNome
         }
 
-        const resposta =  await axios.post('/cliente/salvarCliente', dadosFormulario)
-        
-
+        const {data} =  await axios.post('/cliente/salvarCliente', dadosFormulario)
+        alert('cliente cadastrado')
     } 
     catch{
         console.log('Erro ao salvar o cliente')

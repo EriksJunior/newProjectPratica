@@ -21,7 +21,7 @@ router.post('/salvarCliente', async (req, res) => {
         const dadosCliente = { nome, sobreNome, id }
         await knex.table('cliente').insert(dadosCliente)
         return res.status(200).json(dadosCliente)
-    } catch (error) { // só pra pegar o errro se caso cair no catch
+    } catch (error) { 
         console.log(error)
         return res.status(500).send('ocorreu um erro')
 
