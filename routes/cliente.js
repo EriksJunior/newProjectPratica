@@ -13,15 +13,6 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/listarClientes', async (req, res) => {
-    try {
-      
-    } catch (error) { 
-      
-
-    }
-})
-
 
 router.post('/salvarCliente', async (req, res) => {
     try {
@@ -32,8 +23,17 @@ router.post('/salvarCliente', async (req, res) => {
         return res.status(200).json(dadosCliente)
     } catch (error) { 
         console.log(error)
-        return res.status(500).send('ocorreu um erro')
+        return res.status(500).send('ocorreu um erro ao salvar as informações do cliente')
 
+    }
+})
+
+
+router.get('/listarClientes', async (req, res) => {
+    try {
+      await knex.table('cliente').select('*')
+    } catch (error) { 
+        res.status(500).send('ocorreu um ao buscar os clientes');
     }
 })
 
@@ -46,7 +46,7 @@ router.put('/atualizarCliente', async (req, res) => {
         return res.status(200).json(dadosCliente)
     } catch (error) { 
         console.log(error)
-        return res.status(500).send('ocorreu um erro')     
+        return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')     
     }
 })
 
