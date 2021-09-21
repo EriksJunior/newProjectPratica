@@ -19,7 +19,10 @@ router.post('/salvarCliente', async (req, res) => {
         const { nome, sobreNome } = req.body;
         const id = uuid.v4();
         const dadosCliente = { nome, sobreNome, id }
-        await knex.table('cliente').insert(dadosCliente)
+        await knex
+        .table('cliente')
+        .insert(dadosCliente)
+
         return res.status(200).json(dadosCliente)
     } catch (error) { 
         console.log(error)
@@ -31,9 +34,13 @@ router.post('/salvarCliente', async (req, res) => {
 
 router.get('/listarClientes', async (req, res) => {
     try {
-      await knex.table('cliente').select('*')
+      const dados = await knex
+      .table('cliente')
+      .select('cliente.nome', 'cliente.sobreNome', 'cliente.id')
+
+      console.log(dados)
     } catch (error) { 
-        res.status(500).send('ocorreu um ao buscar os clientes');
+        res.status(500).send('ocorreu um erro ao buscar os clientes');
     }
 })
 
@@ -42,7 +49,10 @@ router.put('/atualizarCliente', async (req, res) => {
         const { nome, sobreNome, id } = req.body;
         const dadosCliente = {nome, sobreNome}
 
-        await knex.table('cliente').update(dadosCliente).where('id', '=', id)
+        await knex.table('cliente')
+        .update(dadosCliente)
+        .where('id', '=', id)
+
         return res.status(200).json(dadosCliente)
     } catch (error) { 
         console.log(error)

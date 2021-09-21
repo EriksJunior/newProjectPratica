@@ -13,6 +13,11 @@ document.querySelector('#excluirCliente').addEventListener('click', (e)=>{
     excluirCliente();
 })
 
+document.querySelector('#atualizarCliente').addEventListener('click', (e)=>{
+    e.preventDefault();
+    atualizarCliente();
+})
+
 async function salvarCliente(){
     try {
         const nome = document.querySelector('#nomeCliente').value
@@ -25,6 +30,9 @@ async function salvarCliente(){
 
         const {data} =  await axios.post('/cliente/salvarCliente', dadosFormulario)
         alert('cliente cadastrado')
+
+        document.querySelector('#nomeCliente').value = " "
+        document.querySelector('#sobreNomeCliente').value = " "
     } 
     catch{
         console.log('Erro ao salvar o cliente')
@@ -45,7 +53,7 @@ async function atualizarCliente(){
         }
 
         const {data} =  await axios.put('/cliente/atualizarCliente', dadosFormulario)
-        console.log(data)
+        alert('Cliente Atualizado')
     } 
     catch(error) {
         console.log(error)
@@ -54,17 +62,8 @@ async function atualizarCliente(){
 
 async function listarCliente(){
     try {
-        const nome = document.querySelector('#nomeCliente').value
-        const sobreNome = document.querySelector('#sobreNomeCliente').value
-        const id = document.querySelector('#uuid').value
 
-        const dadosFormulario = {
-            nome: nome,
-            sobreNome: sobreNome,
-            id: id
-        }
-
-        const {data} =  await axios.put('/cliente/atualizarCliente', dadosFormulario)
+        const {data} =  await axios.get('/cliente/listarClientes')
         console.log(data)
     } 
     catch(error) {
