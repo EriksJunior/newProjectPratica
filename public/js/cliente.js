@@ -1,3 +1,5 @@
+
+
 document.querySelector('#listarCliente').addEventListener('click', (e)=>{
     e.preventDefault();
     listarCliente();
@@ -39,7 +41,6 @@ async function salvarCliente(){
     }
 }
 
-
 async function atualizarCliente(){
     try {
         const nome = document.querySelector('#nomeCliente').value
@@ -69,4 +70,20 @@ async function listarCliente(){
     catch(error) {
         console.log(error)
     }
+}
+
+async function excluirCliente(){
+ try {
+     const id = document.querySelector('#uuid').value
+
+     const dadosFormulario = {
+        id: id
+    }
+  
+    const {data} = axios.delete('/cliente/excluirCliente', dadosFormulario)
+    console.log(data)
+
+ } catch (error) {
+     console.log(error)
+ }
 }

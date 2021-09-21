@@ -20,11 +20,11 @@ router.post('/salvarCliente', async (req, res) => {
         const id = uuid.v4();
         const dadosCliente = { nome, sobreNome, id }
         await knex
-        .table('cliente')
-        .insert(dadosCliente)
+            .table('cliente')
+            .insert(dadosCliente)
 
         return res.status(200).json(dadosCliente)
-    } catch (error) { 
+    } catch (error) {
         console.log(error)
         return res.status(500).send('ocorreu um erro ao salvar as informações do cliente')
 
@@ -34,12 +34,12 @@ router.post('/salvarCliente', async (req, res) => {
 
 router.get('/listarClientes', async (req, res) => {
     try {
-      const dados = await knex
-      .table('cliente')
-      .select('cliente.nome', 'cliente.sobreNome', 'cliente.id')
+        const dados = await knex
+            .table('cliente')
+            .select('cliente.nome', 'cliente.sobreNome', 'cliente.id')
 
-      console.log(dados)
-    } catch (error) { 
+        console.log(dados)
+    } catch (error) {
         res.status(500).send('ocorreu um erro ao buscar os clientes');
     }
 })
@@ -47,18 +47,39 @@ router.get('/listarClientes', async (req, res) => {
 router.put('/atualizarCliente', async (req, res) => {
     try {
         const { nome, sobreNome, id } = req.body;
-        const dadosCliente = {nome, sobreNome}
+        const dadosCliente = { nome, sobreNome }
 
         await knex.table('cliente')
-        .update(dadosCliente)
-        .where('id', '=', id)
+            .update(dadosCliente)
+            .where('id', '=', id)
 
         return res.status(200).json(dadosCliente)
-    } catch (error) { 
+    } catch (error) {
         console.log(error)
-        return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')     
+        return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')
     }
 })
+
+router.delete('/excluirCliente', async (req, res) => {
+
+    try {
+        const { id } = req.body
+        
+
+
+        await knex.table('cliente')
+            .truncate('cliente')
+            .where('id', '=', id)
+
+        return res.status(200).send('Cliente deletado')
+    } catch (error) {
+        console.log(error)
+    }
+
+
+
+})
+
 
 
 
