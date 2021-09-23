@@ -60,15 +60,13 @@ router.put('/atualizarCliente', async (req, res) => {
     }
 })
 
-router.delete('/excluirCliente', async (req, res) => {
+router.delete('/excluirCliente/:id', async (req, res) => {
 
     try {
-        const { id } = req.body
-        
-
+        const { id } = req.params
 
         await knex.table('cliente')
-            .truncate('cliente')
+            .delete()
             .where('id', '=', id)
 
         return res.status(200).send('Cliente deletado')

@@ -23,11 +23,9 @@ document.querySelector('#atualizarCliente').addEventListener('click', (e)=>{
 async function salvarCliente(){
     try {
         const nome = document.querySelector('#nomeCliente').value
-        const sobreNome = document.querySelector('#sobreNomeCliente').value
 
         const dadosFormulario = {
             nome: nome,
-            sobreNome: sobreNome
         }
 
         const {data} =  await axios.post('/cliente/salvarCliente', dadosFormulario)
@@ -44,12 +42,10 @@ async function salvarCliente(){
 async function atualizarCliente(){
     try {
         const nome = document.querySelector('#nomeCliente').value
-        const sobreNome = document.querySelector('#sobreNomeCliente').value
         const id = document.querySelector('#uuid').value
 
         const dadosFormulario = {
             nome: nome,
-            sobreNome: sobreNome,
             id: id
         }
 
@@ -80,7 +76,7 @@ async function excluirCliente(){
         id: id
     }
   
-    const {data} = axios.delete('/cliente/excluirCliente', dadosFormulario)
+    const {data} = await axios.delete('/cliente/excluirCliente/'+ id)
     console.log(data)
 
  } catch (error) {
