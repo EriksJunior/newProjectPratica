@@ -27,7 +27,7 @@
 
     <%- include('components/navbar') %>
         <div id="divDadosCliente" class="container-fluid">
-            <div id="teste">
+            <div id="inputGroup">
                 <h2>Dados Cliente</h2>
                 <input type="hidden" class="form-group col-md-1" id="uuid" placeholder="id">
                 <input type="text" class="form-group col-md-3" id="nomeCliente" placeholder="Nome">
@@ -43,15 +43,16 @@
                 <input type="text" class="form-group col-md-2" id="celular" maxlength="14" placeholder="Celular">
                 <input type="text" class="form-group col-md-6" id="obs" maxlength="100" placeholder="Observação">
             </div>
-            <button id="salvarCliente">Salvar</button>
-            <button id="excluirCliente">Excluir</button>
-            <button id="pesquisarCliente">Pesquisar</button>
+            <div id="groupBtn">
+                <button id="salvarCliente" class="btnGroup">Salvar</button>
+                <button id="excluirCliente" class="btnGroup">Excluir</button>
+                <button id="pesquisarCliente" class="btnGroup">Pesquisar</button>
+            </div>
             <!-- <button id="atualizarCliente">Atualizar</button> -->
             <div class="line">
             </div>
-
-
         </div>
+        
 
 
 
