@@ -14,11 +14,13 @@ router.get('/', (req, res) => {
 })
 
 
+
+
 router.post('/salvarCliente', async (req, res) => {
     try {
-        const { nome, sobreNome } = req.body;
+        const { nome, numero, cidade, endereco, bairro, uf, nascimento, cpfcnpj, ie, telefone, celular, obs  } = req.body;
         const id = uuid.v4();
-        const dadosCliente = { nome, sobreNome, id }
+        const dadosCliente = { nome, numero, cidade, endereco, bairro, nascimento, uf, cpfcnpj, ie, telefone, celular, obs, id }
         await knex
             .table('cliente')
             .insert(dadosCliente)
@@ -32,11 +34,11 @@ router.post('/salvarCliente', async (req, res) => {
 })
 
 
-router.get('/listarClientes', async (req, res) => {
+router.get('/pesquisarClientes', async (req, res) => {
     try {
         const dados = await knex
             .table('cliente')
-            .select('cliente.nome', 'cliente.sobreNome', 'cliente.id')
+            .select('cliente.id', 'cliente.nome', 'cliente.nascimento', 'cliente.endereco', 'cliente.numero', 'cliente.cidade', 'cliente.bairro', 'cliente.uf', 'cliente.cpfcnpj', 'cliente.ie', 'cliente.telefone', 'cliente.celular', 'cliente.obs'  )
 
         console.log(dados)
     } catch (error) {
@@ -44,21 +46,21 @@ router.get('/listarClientes', async (req, res) => {
     }
 })
 
-router.put('/atualizarCliente', async (req, res) => {
-    try {
-        const { nome, sobreNome, id } = req.body;
-        const dadosCliente = { nome, sobreNome }
+// router.put('/atualizarCliente', async (req, res) => {
+//     try {
+//         const { nome, sobreNome, id } = req.body;
+//         const dadosCliente = { nome, sobreNome }
 
-        await knex.table('cliente')
-            .update(dadosCliente)
-            .where('id', '=', id)
+//         await knex.table('cliente')
+//             .update(dadosCliente)
+//             .where('id', '=', id)
 
-        return res.status(200).json(dadosCliente)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')
-    }
-})
+//         return res.status(200).json(dadosCliente)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')
+//     }
+// })
 
 router.delete('/excluirCliente/:id', async (req, res) => {
 

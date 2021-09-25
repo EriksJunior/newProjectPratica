@@ -1,8 +1,8 @@
 
 
-document.querySelector('#listarCliente').addEventListener('click', (e)=>{
+document.querySelector('#pesquisarCliente').addEventListener('click', (e)=>{
     e.preventDefault();
-    listarCliente();
+    pesquisarCliente();
 })
 
 document.querySelector('#salvarCliente').addEventListener('click', (e)=>{
@@ -15,52 +15,92 @@ document.querySelector('#excluirCliente').addEventListener('click', (e)=>{
     excluirCliente();
 })
 
-document.querySelector('#atualizarCliente').addEventListener('click', (e)=>{
-    e.preventDefault();
-    atualizarCliente();
-})
+// document.querySelector('#atualizarCliente').addEventListener('click', (e)=>{
+//     e.preventDefault();
+//     atualizarCliente();
+// })
 
 async function salvarCliente(){
     try {
-        const nome = document.querySelector('#nomeCliente').value
+        const nomeCliente = document.querySelector('#nomeCliente').value
+        const endereco = document.querySelector('#endereco').value
+        const bairro = document.querySelector('#bairro').value
+        const numero = document.querySelector('#numero').value
+        const cidade = document.querySelector('#cidade').value
+        const uf = document.querySelector('#uf').value
+        const dataNasc = document.querySelector('#dataNasc').value
+        const cpfCnpj = document.querySelector('#cpfCnpj').value
+        const ie = document.querySelector('#ie').value
+        const tel = document.querySelector('#telefone').value
+        const cell = document.querySelector('#celular').value
+        const obs = document.querySelector('#obs').value
 
-        const dadosFormulario = {
-            nome: nome,
+        if(nomeCliente == ''){
+            alert('Informe ao menos o nome do cliente')
+        } else {
+            const dadosFormulario = {
+                nome: nomeCliente, 
+                endereco: endereco, 
+                numero: numero, 
+                cidade: cidade, 
+                bairro: bairro, 
+                uf: uf, 
+                nascimento: dataNasc || null,
+                cpfcnpj: cpfCnpj, 
+                ie: ie, 
+                telefone: tel, 
+                celular: cell, 
+                obs: obs, 
+                
+            }
+    
+            const {data} =  await axios.post('/cliente/salvarCliente', dadosFormulario)
+            console.log(data)
+            alert('cliente cadastrado')
+    
+            document.querySelector('#nomeCliente').value = '' 
+            document.querySelector('#nomeCliente').value = ''
+            document.querySelector('#endereco').value = ''
+            document.querySelector('#bairro').value = ''
+            document.querySelector('#numero').value = ''
+            document.querySelector('#cidade').value = ''
+            document.querySelector('#uf').value = ''
+            document.querySelector('#dataNasc').value = ""
+            document.querySelector('#cpfCnpj').value = ''
+            document.querySelector('#ie').value = ''
+            document.querySelector('#telefone').value = ''
+            document.querySelector('#celular').value = ''
+            document.querySelector('#obs').value = ''
         }
-
-        const {data} =  await axios.post('/cliente/salvarCliente', dadosFormulario)
-        alert('cliente cadastrado')
-
-        document.querySelector('#nomeCliente').value = " "
-        document.querySelector('#sobreNomeCliente').value = " "
+       
     } 
-    catch{
-        console.log('Erro ao salvar o cliente')
-    }
-}
-
-async function atualizarCliente(){
-    try {
-        const nome = document.querySelector('#nomeCliente').value
-        const id = document.querySelector('#uuid').value
-
-        const dadosFormulario = {
-            nome: nome,
-            id: id
-        }
-
-        const {data} =  await axios.put('/cliente/atualizarCliente', dadosFormulario)
-        alert('Cliente Atualizado')
-    } 
-    catch(error) {
+    catch (error){
         console.log(error)
     }
 }
 
-async function listarCliente(){
+// async function atualizarCliente(){
+//     try {
+//         const nome = document.querySelector('#nomeCliente').value
+//         const id = document.querySelector('#uuid').value
+
+//         const dadosFormulario = {
+//             nome: nome,
+//             id: id
+//         }
+
+//         const {data} =  await axios.put('/cliente/atualizarCliente', dadosFormulario)
+//         alert('Cliente Atualizado')
+//     } 
+//     catch(error) {
+//         console.log(error)
+//     }
+// }
+
+async function pesquisarCliente(){
     try {
 
-        const {data} =  await axios.get('/cliente/listarClientes')
+        const {data} =  await axios.get('/cliente/pesquisarClientes')
         console.log(data)
     } 
     catch(error) {
