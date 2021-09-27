@@ -3,7 +3,16 @@
 document.querySelector('#pesquisarCliente').addEventListener('click', (e)=>{
     e.preventDefault();
     pesquisarCliente();
+    document.querySelector('.line').innerHTML = '<input type="text" placeholder="Ex: Nome cliente..." class="form-group col-md-3" id="txtPesquisarCliente"> <button id="btnBuscar">Buscar</buttom>'
+    document.querySelector('.line2').innerHTML = '<table class="table table-dark" id="tabelaInfo"><thead><tr><th scope="col">Nome</th><th scope="col">Endereço</th><th scope="col">Bairro</th><th scope="col">Telefone</th></tr></thead><tbody><tr><th scope="row">1</th><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><th scope="row">2</th><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><th scope="row">3</th><td>Larry</td><td>the Bird</td><td>@twitter</td></tr></tbody></table>'
+
+
 })
+
+
+
+
+
 
 document.querySelector('#salvarCliente').addEventListener('click', (e)=>{
     e.preventDefault();
@@ -19,6 +28,7 @@ document.querySelector('#excluirCliente').addEventListener('click', (e)=>{
 //     e.preventDefault();
 //     atualizarCliente();
 // })
+
 
 async function salvarCliente(){
     try {
@@ -101,7 +111,7 @@ async function pesquisarCliente(){
     try {
 
         const {data} =  await axios.get('/cliente/pesquisarClientes')
-        console.log(data)
+        
     } 
     catch(error) {
         console.log(error)
@@ -123,3 +133,4 @@ async function excluirCliente(){
      console.log(error)
  }
 }
+
