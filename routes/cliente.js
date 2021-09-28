@@ -39,8 +39,8 @@ router.get('/pesquisarClientes', async (req, res) => {
         const dados = await knex
             .table('cliente')
             .select('cliente.id', 'cliente.nome', 'cliente.nascimento', 'cliente.endereco', 'cliente.numero', 'cliente.cidade', 'cliente.bairro', 'cliente.uf', 'cliente.cpfcnpj', 'cliente.ie', 'cliente.telefone', 'cliente.celular', 'cliente.obs'  )
-
-        console.log(dados)
+        res.status(200).json(dados)
+            // console.log(dados)
     } catch (error) {
         res.status(500).send('ocorreu um erro ao buscar os clientes');
     }
