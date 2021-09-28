@@ -101,8 +101,13 @@ async function salvarCliente(){
 async function pesquisarCliente(){
     try {
         const {data} =  await axios.get('/cliente/pesquisarClientes')
-        document.querySelector('#index1').textContent = data[0].nome
-        console.log(data[0].nome)
+        let valor = 0;
+        for(let i=0; i < data.length; i++){
+            valor += 1
+           document.querySelector(`#index${valor}`).textContent = data[i].nome
+        }
+        
+        console.log(data)
         return data
        
 
