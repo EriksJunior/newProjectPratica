@@ -1,16 +1,15 @@
-
-document.querySelector('#btnBuscar').addEventListener('click', (e)=>{
+document.querySelector('#btnBuscar').addEventListener('click', (e) => {
     e.preventDefault();
     pesquisarCliente();
 })
 
 
-document.querySelector('#salvarCliente').addEventListener('click', (e)=>{
+document.querySelector('#salvarCliente').addEventListener('click', (e) => {
     e.preventDefault();
     salvarCliente();
 })
 
-document.querySelector('#excluirCliente').addEventListener('click', (e)=>{
+document.querySelector('#excluirCliente').addEventListener('click', (e) => {
     e.preventDefault();
     excluirCliente();
 })
@@ -21,7 +20,7 @@ document.querySelector('#excluirCliente').addEventListener('click', (e)=>{
 // })
 
 
-async function salvarCliente(){
+async function salvarCliente() {
     try {
         const nomeCliente = document.querySelector('#nomeCliente').value
         const endereco = document.querySelector('#endereco').value
@@ -36,30 +35,30 @@ async function salvarCliente(){
         const cell = document.querySelector('#celular').value
         const obs = document.querySelector('#obs').value
 
-        if(nomeCliente == ''){
+        if (nomeCliente == '') {
             alert('Informe ao menos o nome do cliente')
         } else {
             const dadosFormulario = {
-                nome: nomeCliente, 
-                endereco: endereco, 
-                numero: numero, 
-                cidade: cidade, 
-                bairro: bairro, 
-                uf: uf, 
+                nome: nomeCliente,
+                endereco: endereco,
+                numero: numero,
+                cidade: cidade,
+                bairro: bairro,
+                uf: uf,
                 nascimento: dataNasc || null,
-                cpfcnpj: cpfCnpj, 
-                ie: ie, 
-                telefone: tel, 
-                celular: cell, 
-                obs: obs, 
-                
+                cpfcnpj: cpfCnpj,
+                ie: ie,
+                telefone: tel,
+                celular: cell,
+                obs: obs,
+
             }
-    
-            const {data} =  await axios.post('/cliente/salvarCliente', dadosFormulario)
+
+            const { data } = await axios.post('/cliente/salvarCliente', dadosFormulario)
             console.log(data)
             alert('cliente cadastrado')
-    
-            document.querySelector('#nomeCliente').value = '' 
+
+            document.querySelector('#nomeCliente').value = ''
             document.querySelector('#nomeCliente').value = ''
             document.querySelector('#endereco').value = ''
             document.querySelector('#bairro').value = ''
@@ -73,9 +72,9 @@ async function salvarCliente(){
             document.querySelector('#celular').value = ''
             document.querySelector('#obs').value = ''
         }
-       
-    } 
-    catch (error){
+
+    }
+    catch (error) {
         console.log(error)
     }
 }
@@ -98,39 +97,68 @@ async function salvarCliente(){
 //     }
 // }
 
-async function pesquisarCliente(){
+async function pesquisarCliente() {
     try {
-        const {data} =  await axios.get('/cliente/pesquisarClientes')
-        let valor = 0;
-        for(let i=0; i < data.length; i++){
-            valor += 1
-           document.querySelector(`#index${valor}`).textContent = data[i].nome
+        const { data } = await axios.get('/cliente/pesquisarClientes')
+
+        // $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
+
+        for (let i = 0; i < data.length; i++) {
+            $("#tabelaInfo tbody").append(` 
+            <tr>
+                 <td>${data[i].nome}</td>
+                 <td>${data[i].endereco}</td>
+                 <td>${data[i].bairro}</td>
+                 <td>${data[i].telefone}</td>
+            </tr>
+            `)
+
+            // Modo abaixo realiza a mesma coisa, porém sem JQUERY
+            // const tableLinha = document.querySelector('#infoClientes')
+            // const linha = document.createElement('tr')
+            // const nome = document.createElement('td')
+            // const endereco = document.createElement('td')
+            // const bairro = document.createElement('td')
+            // const telefone = document.createElement('td')
+
+            // tableLinha.appendChild(linha)
+            // linha.appendChild(nome)
+            // linha.appendChild(endereco)
+            // linha.appendChild(bairro)
+            // linha.appendChild(telefone)
+
+            // nome.textContent = data[i].nome;
+            // endereco.textContent = data[i].endereco;
+            // bairro.textContent = data[i].bairro;
+            // telefone.textContent = data[i].telefone;
+
+           
         }
-        
+
         console.log(data)
         return data
-       
 
 
-    } 
-    catch(error) {
+
+    }
+    catch (error) {
         console.log(error)
     }
 }
 
-async function excluirCliente(){
- try {
-     const id = document.querySelector('#uuid').value
+async function excluirCliente() {
+    try {
+        const id = document.querySelector('#uuid').value
 
-     const dadosFormulario = {
-        id: id
+        const dadosFormulario = {
+            id: id
+        }
+
+        const { data } = await axios.delete('/cliente/excluirCliente/' + id)
+        console.log(data)
+
+    } catch (error) {
+        console.log(error)
     }
-  
-    const {data} = await axios.delete('/cliente/excluirCliente/'+ id)
-    console.log(data)
-
- } catch (error) {
-     console.log(error)
- }
 }
 
