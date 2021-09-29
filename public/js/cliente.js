@@ -100,8 +100,8 @@ async function salvarCliente() {
 async function pesquisarCliente() {
     try {
         const { data } = await axios.get('/cliente/pesquisarClientes')
-
-        // $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
+        
+        $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
 
         for (let i = 0; i < data.length; i++) {
             $("#tabelaInfo tbody").append(` 
