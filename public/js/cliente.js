@@ -9,14 +9,16 @@ document.querySelector('#btnBuscar').addEventListener('click', async (e) => {
             const { data } = await axios.get('/cliente/pesquisarClientes/filtro/' + nomePesquisa)
             $("#tabelaInfo tbody").empty()
 
-            $("#tabelaInfo tbody").append(` 
-            <tr>
-                 <td>${data[0].nome}</td>
-                 <td>${data[0].endereco}</td>
-                 <td>${data[0].bairro}</td>
-                 <td>${data[0].telefone}</td>
-            </tr>
-            `)
+            for (let i = 0; i < data.length; i++) {
+                $("#tabelaInfo tbody").append(` 
+                <tr>
+                     <td>${data[i].nome}</td>
+                     <td>${data[i].endereco}</td>
+                     <td>${data[i].bairro}</td>
+                     <td>${data[i].telefone}</td>
+                </tr>
+                `)
+            }
             console.log(data)
             return data
         }
@@ -159,28 +161,6 @@ async function pesquisarCliente() {
 
         console.log(data)
         return data
-    }
-    catch (error) {
-        console.log(error)
-    }
-}
-
-async function pesquisarClientePorNome() {
-    try {
-        const { data } = await axios.get('/cliente/pesquisarClientes/filtro')
-
-
-        $("#tabelaInfo tbody").append(` 
-            <tr>
-                 <td>${data[0].nome}</td>
-                 <td>${data[0].endereco}</td>
-                 <td>${data[0].bairro}</td>
-                 <td>${data[0].telefone}</td>
-            </tr>
-            `)
-        console.log(data)
-        return data
-
     }
     catch (error) {
         console.log(error)
