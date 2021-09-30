@@ -1,6 +1,30 @@
-document.querySelector('#btnBuscar').addEventListener('click', (e) => {
-    e.preventDefault();
-    pesquisarCliente();
+
+document.querySelector('#btnBuscar').addEventListener('click', async (e) => {
+    try {
+        const nomePesquisa = document.querySelector('#nomePesquisa').value;
+        e.preventDefault();
+        if (nomePesquisa == '' || nomePesquisa == null) {
+            pesquisarCliente();
+        } else {
+            const { data } = await axios.get('/cliente/pesquisarClientes/filtro/' + nomePesquisa)
+            $("#tabelaInfo tbody").empty()
+
+            $("#tabelaInfo tbody").append(` 
+            <tr>
+                 <td>${data[0].nome}</td>
+                 <td>${data[0].endereco}</td>
+                 <td>${data[0].bairro}</td>
+                 <td>${data[0].telefone}</td>
+            </tr>
+            `)
+            console.log(data)
+            return data
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
 })
 
 
@@ -100,7 +124,7 @@ async function salvarCliente() {
 async function pesquisarCliente() {
     try {
         const { data } = await axios.get('/cliente/pesquisarClientes')
-        
+
         $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
 
         for (let i = 0; i < data.length; i++) {
@@ -131,14 +155,31 @@ async function pesquisarCliente() {
             // endereco.textContent = data[i].endereco;
             // bairro.textContent = data[i].bairro;
             // telefone.textContent = data[i].telefone;
-
-           
         }
 
         console.log(data)
         return data
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+async function pesquisarClientePorNome() {
+    try {
+        const { data } = await axios.get('/cliente/pesquisarClientes/filtro')
 
 
+        $("#tabelaInfo tbody").append(` 
+            <tr>
+                 <td>${data[0].nome}</td>
+                 <td>${data[0].endereco}</td>
+                 <td>${data[0].bairro}</td>
+                 <td>${data[0].telefone}</td>
+            </tr>
+            `)
+        console.log(data)
+        return data
 
     }
     catch (error) {
