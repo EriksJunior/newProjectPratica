@@ -43,6 +43,9 @@ document.querySelector('#excluirCliente').addEventListener('click', (e) => {
     excluirCliente();
 })
 
+
+
+
 // document.querySelector('#atualizarCliente').addEventListener('click', (e)=>{
 //     e.preventDefault();
 //     atualizarCliente();
@@ -140,7 +143,6 @@ async function pesquisarCliente() {
                  <td>${data[i].bairro}</td>
                  <td>${data[i].telefone}</td>
                  <td><button id="editarCliente">Editar</button></td>
-                 <td><button id="excluirCliente">Excluir</button></td>
             </tr>
             `)
 
