@@ -226,3 +226,16 @@ a.article:hover {
     margin-top: 15px;
 }
 
+#excluirCliente{
+    background-color: rgb(165, 6, 6);
+    color: whitesmoke;
+    border-radius: 4px;
+    outline: none;
+}
+
+#editarCliente{
+    background-color: rgb(64, 72, 141);
+    color: whitesmoke;
+    border-radius: 4px;
+    outline: none;
+}

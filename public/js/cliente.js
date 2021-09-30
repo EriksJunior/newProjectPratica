@@ -16,6 +16,9 @@ document.querySelector('#btnBuscar').addEventListener('click', async (e) => {
                      <td>${data[i].endereco}</td>
                      <td>${data[i].bairro}</td>
                      <td>${data[i].telefone}</td>
+                     <td></td>
+                     <td></td>
+                
                 </tr>
                 `)
             }
@@ -136,6 +139,8 @@ async function pesquisarCliente() {
                  <td>${data[i].endereco}</td>
                  <td>${data[i].bairro}</td>
                  <td>${data[i].telefone}</td>
+                 <td><button id="editarCliente">Editar</button></td>
+                 <td><button id="excluirCliente">Excluir</button></td>
             </tr>
             `)
 
