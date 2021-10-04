@@ -38,10 +38,6 @@ document.querySelector('#salvarCliente').addEventListener('click', (e) => {
     salvarCliente();
 })
 
-document.querySelector('#excluirCliente').addEventListener('click', (e) => {
-    e.preventDefault();
-    excluirCliente();
-})
 
 
 
@@ -135,14 +131,16 @@ async function pesquisarCliente() {
 
         $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
 
-        for (let i = 0; i < data.length; i++) {
+        for (item of data) {
             $("#tabelaInfo tbody").append(` 
             <tr>
-                 <td>${data[i].nome}</td>
-                 <td>${data[i].endereco}</td>
-                 <td>${data[i].bairro}</td>
-                 <td>${data[i].telefone}</td>
+                 <td style="display:none;">${item.id}</td>
+                 <td>${item.nome}</td>
+                 <td>${item.endereco}</td>
+                 <td>${item.bairro}</td>
+                 <td>${item.telefone}</td>
                  <td><button id="editarCliente">Editar</button></td>
+                 <td><button id="excluirCliente" onclick="excluirCliente(id)">Excluir</button></td>
             </tr>
             `)
 
@@ -176,13 +174,10 @@ async function pesquisarCliente() {
 
 async function excluirCliente() {
     try {
+
         const id = document.querySelector('#uuid').value
 
-        const dadosFormulario = {
-            id: id
-        }
-
-        const { data } = await axios.delete('/cliente/excluirCliente/' + id)
+        const { data } = await axios.delete(`/cliente/excluirCliente/${id}/`)
         console.log(data)
 
     } catch (error) {

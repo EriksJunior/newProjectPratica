@@ -54,7 +54,7 @@ router.get('/pesquisarClientes/filtro/:nomePesquisa', async (req, res) => {
         const dadosReturn = await knex.table('cliente')
             .select()
             .where('nome', 'like', `%${nomePesquisa}%`)
-            return res.status(200).json(dadosReturn)
+        return res.status(200).json(dadosReturn)
     } catch (error) {
         res.status(500).send('ocorreu um erro ao buscar os clientes');
     }
@@ -81,11 +81,11 @@ router.delete('/excluirCliente/:id', async (req, res) => {
     try {
         const { id } = req.params
 
-        await knex.table('cliente')
+       const data = await knex.table('cliente')
             .delete()
             .where('id', '=', id)
-
-        return res.status(200).send('Cliente deletado')
+        console.log(data)
+        return res.status(200).json(data)
     } catch (error) {
         console.log(error)
     }
