@@ -128,19 +128,19 @@ async function salvarCliente() {
 async function pesquisarCliente() {
     try {
         const { data } = await axios.get('/cliente/pesquisarClientes')
-
+        const index = 0
         $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
 
         for (item of data) {
             $("#tabelaInfo tbody").append(` 
             <tr>
-                 <td style="display:none;">${item.id}</td>
+                 <td>${item.id}</td>
                  <td>${item.nome}</td>
                  <td>${item.endereco}</td>
                  <td>${item.bairro}</td>
                  <td>${item.telefone}</td>
                  <td><button id="editarCliente">Editar</button></td>
-                 <td><button id="excluirCliente" onclick="excluirCliente(id)">Excluir</button></td>
+                 <td><button id="excluirCliente" onclick="excluirCliente(${this.id})">Excluir</button></td>
             </tr>
             `)
 
@@ -172,13 +172,14 @@ async function pesquisarCliente() {
     }
 }
 
-async function excluirCliente() {
+async function excluirCliente(id) {
     try {
 
-        const id = document.querySelector('#uuid').value
-
-        const { data } = await axios.delete(`/cliente/excluirCliente/${id}/`)
+        const { data } = await axios.delete(`/cliente/excluirCliente/${id}`)
+        
         console.log(data)
+        
+        
 
     } catch (error) {
         console.log(error)

@@ -13,9 +13,6 @@ router.get('/', (req, res) => {
 
 })
 
-
-
-
 router.post('/salvarCliente', async (req, res) => {
     try {
         const { nome, numero, cidade, endereco, bairro, uf, nascimento, cpfcnpj, ie, telefone, celular, obs } = req.body;
@@ -32,7 +29,6 @@ router.post('/salvarCliente', async (req, res) => {
 
     }
 })
-
 
 router.get('/pesquisarClientes', async (req, res) => {
     try {
