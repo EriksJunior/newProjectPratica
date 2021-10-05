@@ -38,14 +38,13 @@
                 <input type="text" class="form-group col-md-1" id="uf" placeholder="UF">
                 <input type="date" class="form-group col-md-2" id="dataNasc" placeholder="Data nascimento">
                 <input type="text" class="form-group col-md-2" id="cpfCnpj" maxlength="14" placeholder="CPF/CNPJ">
-                <input type="text" class="form-group col-md-2" id="ie" placeholder="Inscrição Estadual">
+                <input type="text" class="form-group col-md-2" id="ie" maxlength="20" placeholder="Inscrição Estadual">
                 <input type="text" class="form-group col-md-2" id="telefone" maxlength="16" placeholder="Telefone">
                 <input type="text" class="form-group col-md-2" id="celular" maxlength="14" placeholder="Celular">
                 <input type="text" class="form-group col-md-6" id="obs" maxlength="100" placeholder="Observação">
             </div>
             <div id="groupBtn">
                 <button id="salvarCliente" class="btnGroup">Salvar</button>
-                <button id="excluirCliente" class="btnGroup">Excluir</button>
             </div>
             <!-- <button id="atualizarCliente">Atualizar</button> -->
             <div class="line">
@@ -60,6 +59,7 @@
                 <table class="table table-dark" id="tabelaInfo">
                     <thead>
                       <tr>
+                        <th scope="col" style="display: none" >id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Endereço</th>
                         <th scope="col">Bairro</th>

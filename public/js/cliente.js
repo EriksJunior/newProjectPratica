@@ -134,13 +134,13 @@ async function pesquisarCliente() {
         for (const item of data) {
             $("#tabelaInfo tbody").append(` 
             <tr>
-                 <td>${item.id}</td>
+                 <td style="display: none">${item.id}</td>
                  <td>${item.nome}</td>
                  <td>${item.endereco}</td>
                  <td>${item.bairro}</td>
                  <td>${item.telefone}</td>
-                 <td><button id="editarCliente">Editar</button></td>
-                 <td><button id="excluirCliente" onclick="excluirCliente(${this.id})">Excluir</button></td>
+                 <td><button id="btnEditarCliente">Editar</button></td>
+                 <td><button id="btnExcluirCliente" onclick="excluirCliente('${item.id}')">Excluir</button></td>
             </tr>
             `)
 
@@ -162,9 +162,10 @@ async function pesquisarCliente() {
             // endereco.textContent = data[i].endereco;
             // bairro.textContent = data[i].bairro;
             // telefone.textContent = data[i].telefone;
+            console.log(item.id)
         }
 
-        console.log(data)
+        
         return data
     }
     catch (error) {
@@ -174,10 +175,11 @@ async function pesquisarCliente() {
 
 async function excluirCliente(id) {
     try {
-
-        const { data } = await axios.delete(`/cliente/excluirCliente/${id}`)
         
+        const { data } = await axios.delete(`/cliente/excluirCliente/${id}`)
+        alert('Cliente deletado com sucesso!!')
         console.log(data)
+       
         
         
 
