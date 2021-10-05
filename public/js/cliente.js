@@ -131,7 +131,7 @@ async function pesquisarCliente() {
         const index = 0
         $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
 
-        for (item of data) {
+        for (const item of data) {
             $("#tabelaInfo tbody").append(` 
             <tr>
                  <td>${item.id}</td>
