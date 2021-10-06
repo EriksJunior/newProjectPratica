@@ -56,21 +56,36 @@ router.get('/pesquisarClientes/filtro/:nomePesquisa', async (req, res) => {
     }
 })
 
-// router.put('/atualizarCliente', async (req, res) => {
-//     try {
-//         const { nome, sobreNome, id } = req.body;
-//         const dadosCliente = { nome, sobreNome }
+router.get('/pesquisarClientes/tabela/editar/:id', async (req, res) => {
+    try {
 
-//         await knex.table('cliente')
-//             .update(dadosCliente)
-//             .where('id', '=', id)
+        const {id} = req.params
+        const dados = await knex
+            .table('cliente')
+            .select('cliente.id', 'cliente.nome', 'cliente.nascimento', 'cliente.endereco', 'cliente.numero', 'cliente.cidade', 'cliente.bairro', 'cliente.uf', 'cliente.cpfcnpj', 'cliente.ie', 'cliente.telefone', 'cliente.celular', 'cliente.obs')
+            .where('id', '=', id)
+        res.status(200).json(dados)
+        console.log(dados)
+    } catch (error) {
+        res.status(500).send('ocorreu um erro ao buscar os clientes');
+    }
+})
 
-//         return res.status(200).json(dadosCliente)
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')
-//     }
-// })
+router.put('/atualizarCliente', async (req, res) => {
+    try {
+        const { id, nome, endereco, numero, cidade, bairro, uf, nascimento, cpfcnpj, ie, telefone, celular, obs } = req.body;
+        const dadosCliente = { id, nome, endereco, numero, cidade, bairro, uf, nascimento, cpfcnpj, ie, telefone, celular, obs }
+
+        await knex.table('cliente')
+            .update(dadosCliente)
+            .where('id', '=', id)
+
+        return res.status(200).json(dadosCliente)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send('ocorreu um erro ao atualizar os dados do cliente')
+    }
+})
 
 router.delete('/excluirCliente/:id', async (req, res) => {
 

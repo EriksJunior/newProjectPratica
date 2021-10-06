@@ -50,6 +50,7 @@ document.querySelector('#salvarCliente').addEventListener('click', (e) => {
 
 async function salvarCliente() {
     try {
+        const id = document.querySelector('#uuid').value
         const nomeCliente = document.querySelector('#nomeCliente').value
         const endereco = document.querySelector('#endereco').value
         const bairro = document.querySelector('#bairro').value
@@ -63,43 +64,89 @@ async function salvarCliente() {
         const cell = document.querySelector('#celular').value
         const obs = document.querySelector('#obs').value
 
-        if (nomeCliente == '') {
-            alert('Informe ao menos o nome do cliente')
+        if (id !== null || id !== '') {
+            atualizarCliente();
         } else {
-            const dadosFormulario = {
-                nome: nomeCliente,
-                endereco: endereco,
-                numero: numero,
-                cidade: cidade,
-                bairro: bairro,
-                uf: uf,
-                nascimento: dataNasc || null,
-                cpfcnpj: cpfCnpj,
-                ie: ie,
-                telefone: tel,
-                celular: cell,
-                obs: obs,
-
+            if (nomeCliente == '') {
+                alert('Informe ao menos o nome do cliente')
+            } else {
+                const dadosFormulario = {
+                    nome: nomeCliente,
+                    endereco: endereco,
+                    numero: numero,
+                    cidade: cidade,
+                    bairro: bairro,
+                    uf: uf,
+                    nascimento: dataNasc || null,
+                    cpfcnpj: cpfCnpj,
+                    ie: ie,
+                    telefone: tel,
+                    celular: cell,
+                    obs: obs,
+    
+                }
+    
+                const { data } = await axios.post('/cliente/salvarCliente', dadosFormulario)
+                console.log(data)
+                alert('cliente cadastrado')
+    
+                document.querySelector('#nomeCliente').value = ''
+                document.querySelector('#nomeCliente').value = ''
+                document.querySelector('#endereco').value = ''
+                document.querySelector('#bairro').value = ''
+                document.querySelector('#numero').value = ''
+                document.querySelector('#cidade').value = ''
+                document.querySelector('#uf').value = ''
+                document.querySelector('#dataNasc').value = ""
+                document.querySelector('#cpfCnpj').value = ''
+                document.querySelector('#ie').value = ''
+                document.querySelector('#telefone').value = ''
+                document.querySelector('#celular').value = ''
+                document.querySelector('#obs').value = ''
             }
-
-            const { data } = await axios.post('/cliente/salvarCliente', dadosFormulario)
-            console.log(data)
-            alert('cliente cadastrado')
-
-            document.querySelector('#nomeCliente').value = ''
-            document.querySelector('#nomeCliente').value = ''
-            document.querySelector('#endereco').value = ''
-            document.querySelector('#bairro').value = ''
-            document.querySelector('#numero').value = ''
-            document.querySelector('#cidade').value = ''
-            document.querySelector('#uf').value = ''
-            document.querySelector('#dataNasc').value = ""
-            document.querySelector('#cpfCnpj').value = ''
-            document.querySelector('#ie').value = ''
-            document.querySelector('#telefone').value = ''
-            document.querySelector('#celular').value = ''
-            document.querySelector('#obs').value = ''
         }
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+async function atualizarCliente() {
+    try {
+        const id = document.querySelector('#uuid').value
+        const nomeCliente = document.querySelector('#nomeCliente').value
+        const endereco = document.querySelector('#endereco').value
+        const bairro = document.querySelector('#bairro').value
+        const numero = document.querySelector('#numero').value
+        const cidade = document.querySelector('#cidade').value
+        const uf = document.querySelector('#uf').value
+        const dataNasc = document.querySelector('#dataNasc').value
+        const cpfCnpj = document.querySelector('#cpfCnpj').value
+        const ie = document.querySelector('#ie').value
+        const tel = document.querySelector('#telefone').value
+        const cell = document.querySelector('#celular').value
+        const obs = document.querySelector('#obs').value
+
+        const dadosFormulario = {
+            id: id,
+            nome: nomeCliente,
+            endereco: endereco,
+            numero: numero,
+            cidade: cidade,
+            bairro: bairro,
+            uf: uf,
+            nascimento: dataNasc || null,
+            cpfcnpj: cpfCnpj,
+            ie: ie,
+            telefone: tel,
+            celular: cell,
+            obs: obs,
+        }
+
+        const { data } = await axios.put('/cliente/atualizarCliente', dadosFormulario)
+        alert('Cliente Atualizado')
+        console.log(data)
+        return data
 
     }
     catch (error) {
@@ -107,30 +154,11 @@ async function salvarCliente() {
     }
 }
 
-// async function atualizarCliente(){
-//     try {
-//         const nome = document.querySelector('#nomeCliente').value
-//         const id = document.querySelector('#uuid').value
-
-//         const dadosFormulario = {
-//             nome: nome,
-//             id: id
-//         }
-
-//         const {data} =  await axios.put('/cliente/atualizarCliente', dadosFormulario)
-//         alert('Cliente Atualizado')
-//     } 
-//     catch(error) {
-//         console.log(error)
-//     }
-// }
-
 async function pesquisarCliente() {
     try {
         const { data } = await axios.get('/cliente/pesquisarClientes')
         $("#tabelaInfo tbody").empty() // limpa a tabela pq se naõ acada hora que clicar na pesquisa insere duplicado
 
-        
         for (const item of data) {
             $("#tabelaInfo tbody").append(` 
             <tr>
@@ -139,8 +167,8 @@ async function pesquisarCliente() {
                  <td>${item.endereco}</td>
                  <td>${item.bairro}</td>
                  <td>${item.telefone}</td>
-                 <td><button id="btnEditarCliente">Editar</button></td>
-                 <td><button id="btnExcluirCliente" onclick="excluirCliente('${item.id}')">Excluir</button></td>
+                 <td><button id="btnEditarCliente" onclick= "editarCliente('${item.id}')">Editar</button></td>
+                 <td><button id="btnExcluirCliente" onclick= "excluirCliente('${item.id}')">Excluir</button></td>
             </tr>
             `)
 
@@ -162,10 +190,7 @@ async function pesquisarCliente() {
             // endereco.textContent = data[i].endereco;
             // bairro.textContent = data[i].bairro;
             // telefone.textContent = data[i].telefone;
-            console.log(item.id)
         }
-
-        
         return data
     }
     catch (error) {
@@ -175,16 +200,38 @@ async function pesquisarCliente() {
 
 async function excluirCliente(id) {
     try {
-        
         const { data } = await axios.delete(`/cliente/excluirCliente/${id}`)
         alert('Cliente deletado com sucesso!!')
         console.log(data)
-       
-        
-        
-
     } catch (error) {
         console.log(error)
     }
 }
 
+async function editarCliente(id) {
+    try {
+        const { data } = await axios.get(`/cliente/pesquisarClientes/tabela/editar/${id}`)
+
+        document.querySelector('#uuid').value = data[0].id
+        document.querySelector('#nomeCliente').value = data[0].nome
+        document.querySelector('#endereco').value = data[0].endereco
+        document.querySelector('#bairro').value = data[0].bairro
+        document.querySelector('#numero').value = data[0].numero
+        document.querySelector('#cidade').value = data[0].cidade
+        document.querySelector('#uf').value = data[0].uf
+        document.querySelector('#dataNasc').value = data[0].nascimento
+        document.querySelector('#cpfCnpj').value = data[0].cpfcnpj
+        document.querySelector('#ie').value = data[0].ie
+        document.querySelector('#telefone').value = data[0].telefone
+        document.querySelector('#celular').value = data[0].celular
+        document.querySelector('#obs').value = data[0].obs
+
+
+
+
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
