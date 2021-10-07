@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%- include('components/navbar') %>
+        <div id="divDadosCliente" class="container-fluid">
+            <div id="inputGroup">
+                <h2>Informações do produto</h2>
+                <input type="hidden" class="form-group col-md-1" id="uuid" placeholder="id">
+                <input type="text" class="form-group col-md-3" maxlength="55" id="nomeCliente" placeholder="Nome">
+                <input type="text" class="form-group col-md-2" maxlength="15" id="nomeCliente" placeholder="unidade">
+                <input type="text" class="form-group col-md-2" id="nomeCliente" placeholder="Valor Unitário">
+                <input type="text" class="form-group col-md-2" maxlength="55" id="nomeCliente" placeholder="Estoque">
+                <input type="text" class="form-group col-md-2" maxlength="20" id="nomeCliente" placeholder="Marca">
+                <input type="text" class="form-group col-md-2" style="width:165px;" id="nomeCliente" placeholder="Ajustar estoque">
+                <button id="lançarQuantidadeEstoque" class="btnGroup">Lançar</button>
+            </div>
+            <div id="groupBtn">
+                <button id="salvarCliente" class="btnGroup">Salvar</button>
+            </div>
+            <!-- <button id="atualizarCliente">Atualizar</button> -->
+            <div class="line">
+                <input type="text" id="nomePesquisa" placeholder="Ex: Nome do produto..." class="form-group col-8 col-md-8 col-xl-3 col-sm-10 col-lg-8"> 
+                <button class="btnBuscar btnGroup">Buscar</buttom>
+            </div>
+
+            <div class="line2">
+                <table class="table table-dark" id="tabelaInfo">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="display: none" >id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody  id="infoClientes">
+
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+
+
+
+
+
+
+
+
+
+        <!-- <-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="/js/home.js"></script>
+        <script src="/js/produto.js"></script>
+
+</body>
+
+</html>

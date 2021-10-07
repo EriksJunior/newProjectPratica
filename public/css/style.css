@@ -217,12 +217,12 @@ a.article:hover {
   border-radius: 4px;
 }
 
-#btnBuscar{
+.btnBuscar{
   border-radius: 4px;
   margin-top: 10px;
 }
 
-#txtPesquisarCliente{
+#nomePesquisa{
     margin-top: 15px;
 }
 
