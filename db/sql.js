@@ -14,3 +14,16 @@
 //     `obs` varchar(200) DEFAULT NULL,
 //     PRIMARY KEY (`id`)
 //   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+
+// create table produtos(
+// 	id varchar(36) NOT NULL,
+//     nome varchar(55) NOT NULL,
+//     valorUnitario decimal(10,2),
+// 	unidade varchar(15),
+//     estoque decimal(10,5),
+//     marca varchar(20),
+//     PRIMARY KEY (`id`)
+// ) 
