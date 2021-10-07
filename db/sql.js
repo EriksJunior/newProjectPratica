@@ -20,10 +20,10 @@
 
 // create table produtos(
 // 	id varchar(36) NOT NULL,
-//     nome varchar(55) NOT NULL,
-//     valorUnitario decimal(10,2),
+//  nome varchar(55) NOT NULL,
+//  valorUnitario decimal(10,2),
 // 	unidade varchar(15),
-//     estoque decimal(10,5),
-//     marca varchar(20),
-//     PRIMARY KEY (`id`)
+//  estoque decimal(10,5),
+//  marca varchar(20),
+//  PRIMARY KEY (`id`)
 // ) 

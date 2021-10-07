@@ -66,6 +66,7 @@ async function salvarCliente() {
 
         if (id !== null || id !== '') {
             atualizarCliente();
+            
         } else {
             if (nomeCliente == '') {
                 alert('Informe ao menos o nome do cliente')
@@ -89,6 +90,7 @@ async function salvarCliente() {
                 const { data } = await axios.post('/cliente/salvarCliente', dadosFormulario)
                 console.log(data)
                 alert('cliente cadastrado')
+                
     
                 document.querySelector('#nomeCliente').value = ''
                 document.querySelector('#nomeCliente').value = ''
@@ -145,6 +147,7 @@ async function atualizarCliente() {
 
         const { data } = await axios.put('/cliente/atualizarCliente', dadosFormulario)
         alert('Cliente Atualizado')
+        pesquisarCliente();
         console.log(data)
         return data
 
