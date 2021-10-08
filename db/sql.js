@@ -18,12 +18,12 @@
 
 
 
-// create table produtos(
+// create table produto(
 // 	id varchar(36) NOT NULL,
 //  nome varchar(55) NOT NULL,
-//  valorUnitario decimal(10,2),
-// 	unidade varchar(15),
-//  estoque decimal(10,5),
-//  marca varchar(20),
+//  valorUnitario decimal(10,2) DEFAULT NULL,
+// 	unidade varchar(15) DEFAULT NULL,
+//  estoque decimal(10,5) DEFAULT NULL,
+//  marca varchar(20) DEFAULT NULL,
 //  PRIMARY KEY (`id`)
 // ) 

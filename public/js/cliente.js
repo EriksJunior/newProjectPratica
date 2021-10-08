@@ -64,9 +64,8 @@ async function salvarCliente() {
         const cell = document.querySelector('#celular').value
         const obs = document.querySelector('#obs').value
 
-        if (id !== null || id !== '') {
+        if (id !== '') {
             atualizarCliente();
-            
         } else {
             if (nomeCliente == '') {
                 alert('Informe ao menos o nome do cliente')
@@ -105,6 +104,8 @@ async function salvarCliente() {
                 document.querySelector('#telefone').value = ''
                 document.querySelector('#celular').value = ''
                 document.querySelector('#obs').value = ''
+                pesquisarCliente();
+
             }
         }
     }
@@ -205,6 +206,7 @@ async function excluirCliente(id) {
     try {
         const { data } = await axios.delete(`/cliente/excluirCliente/${id}`)
         alert('Cliente deletado com sucesso!!')
+        pesquisarCliente();
         console.log(data)
     } catch (error) {
         console.log(error)
