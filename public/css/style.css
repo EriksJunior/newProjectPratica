@@ -239,3 +239,17 @@ a.article:hover {
     border-radius: 4px;
     outline: none;
 }
+
+#btnEditarProduto{
+    background-color: rgb(64, 72, 141);
+    color: whitesmoke;
+    border-radius: 4px;
+    outline: none;
+}
+
+#btnExcluirProduto{
+    background-color: rgb(165, 6, 6);
+    color: whitesmoke;
+    border-radius: 4px;
+    outline: none;
+}
