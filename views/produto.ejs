@@ -35,16 +35,17 @@
                 <input type="text" class="form-group col-md-2" id="valorUnitario" placeholder="Valor Unitário">
                 <input type="text" class="form-group col-md-2" maxlength="55" id="estoque" placeholder="Estoque">
                 <input type="text" class="form-group col-md-2" maxlength="20" id="marca" placeholder="Marca">
-                <input type="text" class="form-group col-md-2" style="width:165px;" id="ajustarEstoque" placeholder="Ajustar estoque">
-                <button id="lançarQuantidadeEstoque" class="btnGroup">Lançar</button>
+                <input type="text" disabled class="form-group col-md-2" style="width:165px;" id="ajustarEstoque" placeholder="Ajustar estoque">
+                <button id="lançarQuantidadeEstoque"  class="btnGroup">Lançar</button>
             </div>
             <div id="groupBtn">
                 <button id="salvarCliente" class="btnGroup">Salvar</button>
+                <button id="NovoProd" class="btnGroup" onclick="limparDados()">Novo</button>
             </div>
             <!-- <button id="atualizarCliente">Atualizar</button> -->
             <div class="line">
                 <input type="text" id="nomePesquisa" placeholder="Ex: Nome do produto..." class="form-group col-8 col-md-8 col-xl-3 col-sm-10 col-lg-8"> 
-                <button class="btnBuscar btnGroup" id="btnRealizarBusca">Buscar</buttom>
+                <button class="btnBuscar btnGroup" id="btnRealizarBusca" onclick="pesquisarProdutos()">Buscar</buttom>
             </div>
 
             <div class="line2">
